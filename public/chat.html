@@ -26,23 +26,19 @@
 
             <div class="chatMessages">
                 <div class="message">
-                    <p class="meta">u1<span>9:12</span></p>
-                    <p class="text"> chatchat</p>
-                </div>
-                <div class="message">
-                    <p class="meta">u2<span>9:22</span></p>
-                    <p class="text"> chatchat</p>
+                    
                 </div>
             </div>
         </main>
         <div class="chatFormConatiner">
         <form id="chatForm">
-            <textarea id="msg" placeholder="write message" required autocomplete="off" resize="none"/>
-            <button class="btn">send</button>
+            <textarea id="msg" placeholder="write message" required autocomplete="off" resize="none"></textarea>
+            <button class="btn" type="submit">send</button>
         </form>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js" integrity="sha512-f0AM6x08kthGzMyDHZjBgjBCPp8V8ovlHYCI1jMkhViTeX3MykGCf/DnN1khWss/6d1105eAG4TniSKy6UhZrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="js/main.js"></script>
     
 </body>
