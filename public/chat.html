@@ -4,37 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="styleheet" href="css/style.css">
-    <title>Chat</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="icon" href="./img/raspWbg.svg" type="image/svg" sizes="16x16">
+
+    <title>Raspberry Chat</title>
 </head>
 <body>
 
-    <div class="chatConatiner">
+    <div class="chatContainer">
         <header class="chatHeader">
-            <h1>Chat</h1>
-            <a href="index.html" class="btn">leave chat</a>
+            <div class="nameCon">
+                <img src="img/raspWbg.svg" width="50px";/>
+                <h1>Raspberry Chat</h1>
+            </div>
+            <a href="index.html" class="btn">leave</a>
         </header>
         <main class="chatMain">
             <div class="chatSidebar">
-                <h2 class="chatTitle">ChatRoom</h2>
-                <h2 class="UsersTitle">users</h2>
+                <h2 class="usersTitle">Chat buddies</h2>
                 <ul id="users">
                     
                 </ul>
             </div>
+            <div class="chat">
 
-            <div class="chatMessages">
-                <div class="message">
+                <div class="chatMessages">
                     
                 </div>
             </div>
+            <form id="chatForm">
+                <textarea id="msg" placeholder="write message" required autocomplete="off" resize="none">
+                </textarea>
+                <button class="btn" type="submit">send</button>
+            </form>
         </main>
-        <div class="chatFormConatiner">
-        <form id="chatForm">
-            <textarea id="msg" placeholder="write message" required autocomplete="off" resize="none"></textarea>
-            <button class="btn" type="submit">send</button>
-        </form>
-        </div>
     </div>
    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>

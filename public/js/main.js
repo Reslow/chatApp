@@ -25,6 +25,8 @@ socket.on('chatUsers', ({users}) =>{
 
 socket.on('message', message => {
     outputMess(message)
+    // scrolldown
+    chatMessages.scrollTop = chatMessages.scrollHeight
 })
 
 // listen on submit (message)
@@ -34,10 +36,7 @@ chatForm.addEventListener('submit',(e) => {
     // get msg
     const msg = e.target.elements.msg.value
     socket.emit("chat", msg)
-
-    // scrolldown
-    chatMessages.scrollTop = chatMessages.scrollHeight
-
+    
     e.target.elements.msg.value = ''
     e.target.elements.msg.focus()
 })
@@ -47,7 +46,7 @@ function outputMess(message){
     const div = document.createElement('div')
     div.classList.add('message')
 div.innerHTML = 
-`<p>${message.username}<span>${message.time}</span></p>
+`<p class="username">${message.username}<span> ${message.time} </span></p>
 <p>${message.text}</p>`
     document.querySelector(".chatMessages").appendChild(div)
 }
@@ -57,6 +56,6 @@ div.innerHTML =
 
 function outputUsers(users){
 
-userList.innerHTML = `${users.map(user => `<li>${user.username}</li>`).join()}`
+userList.innerHTML = `${users.map(user => `<li>${user.username}</li>`).join('')}`
 }
 

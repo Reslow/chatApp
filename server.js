@@ -14,9 +14,10 @@ app.set("view engine", "ejs")
 
 const server = http.createServer(app)
 const io = socketio(server)
+
 app.use(express.static(path.join(__dirname,'public' )))
 
-const admin = 'Chat Admin'
+const admin = 'admin'
 
 app.get("/", (req,res)=> {
     res.render("index")
@@ -41,7 +42,7 @@ io.on('connection', socket => {
     io.emit('chatUsers', {
         users:getChatUsers()
     })
-    console.log(user)
+    // console.log(user)
     
 })
     // listen for chatmsg
@@ -57,7 +58,7 @@ io.on('connection', socket => {
             io.emit('chatUsers', {
                 users:getChatUsers()
             })
-            console.log(user)
+            // console.log(user)
         }
 
     })
