@@ -7,21 +7,21 @@ const { username } = Qs.parse(location.search, {
     ignoreQueryPrefix: true,
   });
 
-  console.log(userList)
-
 const socket = io()
 
 socket.emit('joinRoom', {username})
 
-// get users
 
+// get users
 socket.on('chatUsers', ({users}) =>{
+    let names = {username}
+    socket.emit('chatUsers',names )
+    
+
     outputUsers(users)
-    console.log(users)
 
 })
 
-console.log(username)
 
 socket.on('message', message => {
     outputMess(message)
@@ -52,11 +52,11 @@ div.innerHTML =
     document.querySelector(".chatMessages").appendChild(div)
 }
 
-function outputUsers(users) {
-    userList.innerHTML = '';
-    users.forEach((user) => {
-      const li = document.createElement('li');
-      li.innerText = user.username;
-      userList.appendChild(li);
-    });
-  }
+
+// addUsersToDOM
+
+function outputUsers(users){
+
+userList.innerHTML = `${users.map(user => `<li>${user.username}</li>`).join()}`
+}
+

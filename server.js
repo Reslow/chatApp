@@ -3,9 +3,11 @@ const http = require('http')
 const express = require("express")
 const socketio = require('socket.io')
 const formatMessage = require('./utils/messages')
-const {userjoin, getUser, userLeave} = require('./utils/users')
+const {userjoin, getUser, userLeave, getChatUsers} = require('./utils/users')
+var Qs = require('qs');
 
-const ejs = require('ejs') 
+
+
 const app = express()
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs")
@@ -24,22 +26,24 @@ app.get("/", (req,res)=> {
 
 // run when client conncect
 io.on('connection', socket => {
-
-    socket.on('joinRoom', ({username})=>{
-      const user = userjoin(socket.id , username)
-        socket.join(user)
-        // welcome current user
-    socket.emit('message', formatMessage(admin, `${user.username} welcome to chat`))
     
+    socket.on('joinRoom', ({username})=>{
+        const user = userjoin(socket.id , username)
+        // socket.join(user)
+
+        // welcome current user
+        socket.emit('message', formatMessage(admin, `${user.username} welcome to chat`))
+        
     //broadcast when user conncects
     socket.broadcast.emit('message', formatMessage(admin,`${user.username} has joined the chat`))
 
     // userinfo
     io.emit('chatUsers', {
-        users:getUser()
+        users:getChatUsers()
     })
+    console.log(user)
+    
 })
-
     // listen for chatmsg
     socket.on('chat', (msg) => {
         const user = getUser(socket.id)
@@ -50,10 +54,10 @@ io.on('connection', socket => {
         const user = userLeave(socket.id)
         if(user){
             io.emit('message', formatMessage(admin,`${user.username} has left the building`))
-                // userinfo
-           io.emit('chatUsers', {
-            users:getUser()
-    })
+            io.emit('chatUsers', {
+                users:getChatUsers()
+            })
+            console.log(user)
         }
 
     })
