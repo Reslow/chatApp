@@ -33,14 +33,8 @@ socket.on('message', message => {
 chatForm.addEventListener('submit',(e) => {
     e.preventDefault()
 
-
-    chatForm.addEventListener("keyup", function(event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            document.getElementById("submit").click();
-        }
-    });
-
+    
+  
 
     // get msg
     const msg = e.target.elements.msg.value
