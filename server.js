@@ -1,4 +1,3 @@
-const PORT = 3000 || process.env.PORT
 const path = require('path')
 const http = require('http')
 const express = require("express")
@@ -32,7 +31,7 @@ io.on('connection', socket => {
     socket.on('joinRoom', ({username})=>{
         const user = userjoin(socket.id , username)
         // socket.join(user)
-
+        
         // welcome current user
         socket.emit('message', formatMessage(admin, `${user.username} welcome to chat`))
         
@@ -65,5 +64,6 @@ io.on('connection', socket => {
     })
 
 })
+const PORT = process.env.PORT || 3000
 
 server.listen(PORT, () => console.log(`server running on port ${PORT}`))
